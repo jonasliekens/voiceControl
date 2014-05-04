@@ -21,14 +21,20 @@ public class Parser {
     }
 
     public void parseCommand(String text){
-        possibleDevices.stream().filter(text::contains).forEach(deviceName -> {
-            Device device = DeviceBuilder.getDevice(deviceName);
-            if (device != null) {
-                device.getCommands().stream().filter(command -> text.contains(
-                        " " + command + " ")).forEach(device::execute);
-            } else {
-                System.out.println("Device Not Found.");
-            }
-        });
+        possibleDevices.stream().filter(text::contains).forEach(deviceName -> findDeviceAndExecute(text, deviceName));
+    }
+
+    private void findDeviceAndExecute(String text, String deviceName) {
+        Device device = DeviceBuilder.getDevice(deviceName);
+        if (device != null) {
+            executeDeviceCommand(text, device);
+        } else {
+            System.out.println("Device Not Found.");
+        }
+    }
+
+    private void executeDeviceCommand(String text, Device someDevice) {
+        someDevice.getCommands().stream().filter(command -> text.contains(
+                " " + command + " ")).forEach(someDevice::execute);
     }
 }
