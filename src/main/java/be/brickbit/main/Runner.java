@@ -1,5 +1,6 @@
 package be.brickbit.main;
 
+import be.brickbit.comm.Connector;
 import be.brickbit.parser.Parser;
 import com.darkprograms.speech.microphone.Microphone;
 import com.darkprograms.speech.recognizer.Recognizer;
@@ -7,15 +8,19 @@ import com.darkprograms.speech.recognizer.Recognizer;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
 public class Runner {
-    public static void main(String[] args) throws IOException, LineUnavailableException, InterruptedException {
+    public static void main(String[] args) throws IOException, LineUnavailableException, InterruptedException, URISyntaxException {
         Microphone microphone = new Microphone(AudioFileFormat.Type.WAVE);
         Recognizer recognizer = new Recognizer();
+        Connector connector = new Connector();
+
         recognizer.setLanguage(Recognizer.Languages.ENGLISH_US);
-        Parser parser = new Parser();
+        Parser parser = new Parser(Arrays.asList("air conditioning", "heating", "selfie", "camera"), connector.getConnection());
 
         boolean isStopCommandGiven = false;
 

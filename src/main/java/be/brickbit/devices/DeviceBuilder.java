@@ -1,5 +1,7 @@
 package be.brickbit.devices;
 
+import org.fusesource.mqtt.client.BlockingConnection;
+
 public class DeviceBuilder {
     public static Device getDevice(String name){
         switch (name){
