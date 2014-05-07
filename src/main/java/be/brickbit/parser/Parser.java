@@ -54,6 +54,6 @@ public class Parser {
 
     private void sendMessage(String deviceName, String command) throws Exception {
         String commandString = deviceName + ":" + command;
-        connection.publish("broker", commandString.getBytes(), QoS.AT_LEAST_ONCE, false);
+        //connection.publish("broker", commandString.getBytes(), QoS.AT_LEAST_ONCE, false);
     }
 }

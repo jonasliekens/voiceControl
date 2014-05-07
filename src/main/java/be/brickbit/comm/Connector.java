@@ -10,11 +10,11 @@ public class Connector {
     private MQTT mqtt;
 
     public Connector() throws URISyntaxException {
-        this.mqtt = new MQTT();
-        mqtt.setHost(BROKER_ADDRESS);
+        //this.mqtt = new MQTT();
+        //mqtt.setHost(BROKER_ADDRESS);
     }
 
     public BlockingConnection getConnection(){
-        return mqtt.blockingConnection();
+        return null; //mqtt.blockingConnection();
     }
 }
